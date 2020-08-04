@@ -14,10 +14,11 @@ aver=(x+y+z+k+p+m+n+h)/8
 print("The average number is: ",aver)
 stalo=aver*dil*(10**4)
 print(stalo," Cells/ml total")
-numb = int(input("Insert the number of wells: "))
-stalo2=(numb*5*(10**6))/stalo
+wells = int(input("Insert the number of wells: "))
+volwel = int(input("Insert the vol/well"))
+stalo2=(wells*dil*(10**6))/stalo
 print(stalo2, " Microliters of Cells")
-stalo3=numb*200-stalo2
+stalo3=wells*volwel-stalo2
 print(stalo3, "Microliters of DMEM")
 print("Your results are as follow: ")
 print("")
