@@ -8,14 +8,14 @@ p = int(input("Insert number 5: "))
 m = int(input("Insert number 6: "))
 n = int(input("Insert number 7: "))
 h = int(input("Insert number 8: "))
-dil = int(input("Insert Dilution"))
+dil = int(input("Insert Dilution: "))
 print("Calculating the average...")
 aver=(x+y+z+k+p+m+n+h)/8
 print("The average number is: ",aver)
 stalo=aver*dil*(10**4)
 print(stalo," Cells/ml total")
 wells = int(input("Insert the number of wells: "))
-volwel = int(input("Insert the vol/well"))
+volwel = int(input("Insert the vol/well: "))
 stalo2=(wells*dil*(10**6))/stalo
 print(stalo2, " Microliters of Cells")
 stalo3=wells*volwel-stalo2
