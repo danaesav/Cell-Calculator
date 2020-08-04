@@ -8,10 +8,11 @@ p = int(input("Insert number 5: "))
 m = int(input("Insert number 6: "))
 n = int(input("Insert number 7: "))
 h = int(input("Insert number 8: "))
+dil = int(input("Insert Dilution"))
 print("Calculating the average...")
 aver=(x+y+z+k+p+m+n+h)/8
 print("The average number is: ",aver)
-stalo=aver*5*(10**4)
+stalo=aver*dil*(10**4)
 print(stalo," Cells/ml total")
 numb = int(input("Insert the number of wells: "))
 stalo2=(numb*5*(10**6))/stalo
