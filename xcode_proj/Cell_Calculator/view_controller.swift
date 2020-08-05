@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var number7: UITextField!
     @IBOutlet weak var number8: UITextField!
     @IBOutlet weak var dilution: UITextField!
+    @IBOutlet weak var cell: UITextField!
     
     @IBOutlet weak var calcbtn: UIButton!
     
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
     var numb7 = 21
     var numb8 = 93
     var dilu = 32
+    var celln = 22
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,20 +57,43 @@ class ViewController: UIViewController {
         number6.inputAccessoryView = toolBar
         number7.inputAccessoryView = toolBar
         number8.inputAccessoryView = toolBar
+        cell.inputAccessoryView = toolBar
     }
 
     @IBAction func calc(_ sender: Any) {
-        self.numb1 = Int(number1.text!)!
-        self.numb2 = Int(number2.text!)!
-        self.numb3 = Int(number3.text!)!
-        self.numb4 = Int(number4.text!)!
-        self.numb5 = Int(number5.text!)!
-        self.numb6 = Int(number6.text!)!
-        self.numb7 = Int(number7.text!)!
-        self.numb8 = Int(number8.text!)!
-        self.dilu = Int(dilution.text!)!
         
-        performSegue(withIdentifier: "turner", sender: self)
+        
+        if (self.number1.text?.isEmpty) and (self.cell.text?>=1) ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number2.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number3.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number4.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number5.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number6.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number7.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.number8.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.dilution.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else {
+            self.numb1 = Int(number1.text!)!
+            self.numb2 = Int(number2.text!)!
+            self.numb3 = Int(number3.text!)!
+            self.numb4 = Int(number4.text!)!
+            self.numb5 = Int(number5.text!)!
+            self.numb6 = Int(number6.text!)!
+            self.numb7 = Int(number7.text!)!
+            self.numb8 = Int(number8.text!)!
+            self.dilu = Int(dilution.text!)!
+            performSegue(withIdentifier: "turner", sender: self)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

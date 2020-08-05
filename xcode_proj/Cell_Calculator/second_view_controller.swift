@@ -57,35 +57,38 @@ class SecondViewController: UIViewController {
         
         finalCalc.layer.cornerRadius = 10
         finalCalc.clipsToBounds = true
-        //well.layer.cornerRadius = 10
-        //well.clipsToBounds = true
-        
-        //well.keyboardType = UIKeyboardType.numberPad
         volwel.keyboardType = UIKeyboardType.numberPad
         
         
     }
     
     @IBAction func calcFinal(_ sender: Any) {
-        let well = Int(wells.text!)
-        let volwell = Int(volwel.text!)
         
-        //calculating average
-        let aver = Int((n1+n2+n3+n4+n5+n6+n7+n8)/8)
-        
-        //stalo = cells/ml
-        let stalo = Int(aver * dil * 10000)
-        
-        //stalo2 = Microliters of Cells
-        let stalo21 = Int(well! * dil)
-        let stalo22 = Int(stalo21 * 1000000)
-        
-        let stalo2 = Int(stalo22 / stalo)
-        
-        //Microliters of DMEM
-        let stalo3 = Int(well! * volwell! - stalo2)
-        
-        finalAns.text = "\(stalo) Cells/ml total \n\(stalo2) Microliters of Cells \n\(stalo3) Microliters of DMEM"
+        if self.wells.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else if self.volwel.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "One or more fields are empty")
+        } else {
+            let well = Int(wells.text!)
+            let volwell = Int(volwel.text!)
+            
+            //calculating average
+            let aver = Int((n1+n2+n3+n4+n5+n6+n7+n8)/8)
+            
+            //stalo = cells/ml
+            let stalo = Int(aver * dil * 10000)
+            
+            //stalo2 = Microliters of Cells
+            let stalo21 = Int(well! * dil)
+            let stalo22 = Int(stalo21 * 1000000)
+            
+            let stalo2 = Int(stalo22 / stalo)
+            
+            //Microliters of DMEM
+            let stalo3 = Int((well! * volwell!) - stalo2)
+            
+            finalAns.text = "\(stalo) Cells/ml total \n\(stalo2) Microliters of Cells \n\(stalo3) Microliters of DMEM"
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -97,5 +100,4 @@ class SecondViewController: UIViewController {
     @objc func doneClicked() {
         view.endEditing(true)
     }
-
 }
