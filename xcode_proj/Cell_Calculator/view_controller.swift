@@ -47,11 +47,11 @@ class ViewController: UIViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        // Creating done button on toolbar
+        // Creating Done button on Toolbar
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneClicked))
         toolBar.setItems([doneButton], animated: false)
         
-        // Adding the toolbar to the text fields
+        // Adding the Toolbar to the text fields
         dilution.inputAccessoryView = toolBar
         number1.inputAccessoryView = toolBar
         number2.inputAccessoryView = toolBar
