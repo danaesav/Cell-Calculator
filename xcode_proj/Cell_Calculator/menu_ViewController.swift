@@ -9,12 +9,13 @@
 import UIKit
 
 class menuViewController: UIViewController {
-    
+
     @IBOutlet weak var cellBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Customizing buttons
         cellBtn.layer.cornerRadius = 10
         cellBtn.clipsToBounds = true
     }
