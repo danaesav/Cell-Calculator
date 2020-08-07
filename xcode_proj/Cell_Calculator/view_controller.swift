@@ -112,20 +112,33 @@ class ViewController: UIViewController {
             Alert.showAlert(on: self, with: "Empty Fields", message: "Dilution field is empty")
         }
         
-        // Check if the text fields are empty and if so show alert
-        if choose.selectedSegmentIndex == 0 {
-            if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || !(self.number5.text?.isEmpty ?? true) || !(self.number6.text?.isEmpty ?? true) || !(self.number7.text?.isEmpty ?? true) || !(self.number8.text?.isEmpty ?? true) {
-                Alert.showAlert(on: self, with: "Empty Fields", message: "Number 1-4 fields should not be empty and Numbers 5-8 should be empty")
-            } else {
-                // If not, perform segue
-                performSegue(withIdentifier: "turner", sender: self)
-            }
-        } else { //Same thing for the second choice
-            if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.number5.text?.isEmpty ?? true || self.number6.text?.isEmpty ?? true || self.number7.text?.isEmpty ?? true || self.number8.text?.isEmpty ?? true {
+        if choose.selectedSegmentIndex == 1 {
+            if self.number1.text?.isEmpty ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.number5.text?.isEmpty ?? true || self.number6.text?.isEmpty ?? true || self.number7.text?.isEmpty ?? true || self.number8.text?.isEmpty ?? true || self.dilution.text?.isEmpty ?? true {
                 Alert.showAlert(on: self, with: "Empty Fields", message: "Number 1-8 fields should not be empty")
-            } else {
-                performSegue(withIdentifier: "turner", sender: self)
             }
+        } else if choose.selectedSegmentIndex == 0 {
+            if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.dilution.text?.isEmpty ?? true || !(self.number5.text?.isEmpty ?? true) || !(self.number6.text?.isEmpty ?? true) || !(self.number7.text?.isEmpty ?? true) || !(self.number8.text?.isEmpty ?? true) {
+                Alert.showAlert(on: self, with: "Empty Fields", message: "Number 1-4 fields should not be empty and Numbers 5-8 should be empty")
+            }
+        }
+        else if self.number1.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number1 field is empty")
+        } else if self.number2.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number2 field is empty")
+        } else if self.number3.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number3 field is empty")
+        } else if self.number4.text?.isEmpty ?? true {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number4 field is empty")
+        } else if (self.number5.text?.isEmpty ?? true) && (choose.selectedSegmentIndex == 1) {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number5 field is empty")
+        } else if (self.number6.text?.isEmpty ?? true) && (choose.selectedSegmentIndex == 1) {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number6 field is empty")
+        } else if (self.number7.text?.isEmpty ?? true) && (choose.selectedSegmentIndex == 1) {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number7 field is empty")
+        } else if (self.number8.text?.isEmpty ?? true) && (choose.selectedSegmentIndex == 1) {
+            Alert.showAlert(on: self, with: "Empty Fields", message: "Number8 field is empty")
+        } else {
+            
         }
     }
     
