@@ -55,7 +55,7 @@ class SecondViewController: UIViewController {
         
     // CALCULATIONS
         
-        // Doing the average and cells/ml calculations according to the choice of the user
+        // Doing the average and Cells/ml calculations according to the choice of the user
         if cn == 0 {
             let aver = Int((n1+n2+n3+n4)/4)
             let stalo = Int(aver * dil * 10000) //stalo = Cells/ml
