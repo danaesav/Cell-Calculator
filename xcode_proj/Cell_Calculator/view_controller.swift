@@ -24,8 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var calcbtn: UIButton!
     @IBOutlet weak var resetbtn: UIButton!
     
-//    var dilu: Int = 0
-//    var stalo: Int = 0
+    // Defining the variables
     var numb1 = 0
     var numb2 = 0
     var numb3 = 0
@@ -38,22 +37,21 @@ class ViewController: UIViewController {
     var dilu = 0
     var choi = 0
     
+    // Function that runs when the View Controller loads
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        resetbtn.layer.cornerRadius = 10
-        resetbtn.clipsToBounds = true
-        calcbtn.layer.cornerRadius = 10
-        calcbtn.clipsToBounds = true
+    // ACCESSORIES
         
+        // Creating Toolbar for keyboard
         let toolBar = UIToolbar()
-        
         toolBar.sizeToFit()
         
+        // Creating done button on toolbar
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneClicked))
-            
         toolBar.setItems([doneButton], animated: false)
         
+        // Adding the toolbar to the text fields
         dilution.inputAccessoryView = toolBar
         number1.inputAccessoryView = toolBar
         number2.inputAccessoryView = toolBar
@@ -63,9 +61,15 @@ class ViewController: UIViewController {
         number6.inputAccessoryView = toolBar
         number7.inputAccessoryView = toolBar
         number8.inputAccessoryView = toolBar
+        
+        // Customizing the buttons and setting keyboard type
+        resetbtn.layer.cornerRadius = 10
+        resetbtn.clipsToBounds = true
+        calcbtn.layer.cornerRadius = 10
+        calcbtn.clipsToBounds = true
     }
     
-    
+    // Reset Button
     @IBAction func reset(_ sender: Any) {
         number1.text = ""
         number2.text = ""
@@ -76,11 +80,10 @@ class ViewController: UIViewController {
         number7.text = ""
         number8.text = ""
         dilution.text = ""
-        
     }
     
-    
-    func hihi() -> Bool {
+    // Function that checks if the fields are empty or not on segmented choice 1
+    func check1() -> Bool {
         if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.dilution.text?.isEmpty ?? true || !(self.number5.text?.isEmpty ?? true) || !(self.number6.text?.isEmpty ?? true) || !(self.number7.text?.isEmpty ?? true) || !(self.number8.text?.isEmpty ?? true) {
             return false
         } else {
@@ -88,7 +91,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func hihi2() -> Bool {
+    // Function that checks if the fields are empty or not on segmented choice 2
+    func check2() -> Bool {
         if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.number5.text?.isEmpty ?? true || self.number6.text?.isEmpty ?? true || self.number7.text?.isEmpty ?? true || self.number8.text?.isEmpty ?? true || self.dilution.text?.isEmpty ?? true {
             return false
         } else {
@@ -96,43 +100,41 @@ class ViewController: UIViewController {
         }
     }
     
+    // The segmented control function
     @IBAction func choice(_ sender: Any) {
-        if choose.selectedSegmentIndex == 0 {
-            choi = 0
-        } else {
-            choi = 1
-        }
     }
  
+    // Button that calculates and performs segue with "turner"
     @IBAction func calc(_ sender: Any) {
         
         // Check if dilution text field is empty
         if (self.dilution.text?.isEmpty ?? true) {
             Alert.showAlert(on: self, with: "Empty Fields", message: "Dilution field is empty")
         }
+        
+        // Check if the text fields are empty and if so show alert
         if choose.selectedSegmentIndex == 0 {
-            
             if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || !(self.number5.text?.isEmpty ?? true) || !(self.number6.text?.isEmpty ?? true) || !(self.number7.text?.isEmpty ?? true) || !(self.number8.text?.isEmpty ?? true) {
                 Alert.showAlert(on: self, with: "Empty Fields", message: "Number 1-4 fields should not be empty and Numbers 5-8 should be empty")
             } else {
+                // If not, perform segue
                 performSegue(withIdentifier: "turner", sender: self)
             }
-        } else {
+        } else { //Same thing for the second choice
             if (self.number1.text?.isEmpty) ?? true || self.number2.text?.isEmpty ?? true || self.number3.text?.isEmpty ?? true || self.number4.text?.isEmpty ?? true || self.number5.text?.isEmpty ?? true || self.number6.text?.isEmpty ?? true || self.number7.text?.isEmpty ?? true || self.number8.text?.isEmpty ?? true {
                 Alert.showAlert(on: self, with: "Empty Fields", message: "Number 1-8 fields should not be empty")
             } else {
                 performSegue(withIdentifier: "turner", sender: self)
             }
         }
-        
     }
     
-    
+    // Prepare for segue func that send the input of the text fields to the SecondViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         var vc = segue.destination as! SecondViewController
 
-        if hihi() == true {
+        if check1() == true {
             vc.n1 = Int(number1.text!)!
             vc.n2 = Int(number2.text!)!
             vc.n3 = Int(number3.text!)!
@@ -140,7 +142,7 @@ class ViewController: UIViewController {
             vc.dil = Int(dilution.text!)!
             vc.cn = Int(choose.selectedSegmentIndex)
 
-        } else if hihi2() == true {
+        } else if check2() == true {
             vc.n1 = Int(number1.text!)!
             vc.n2 = Int(number2.text!)!
             vc.n3 = Int(number3.text!)!
@@ -152,9 +154,9 @@ class ViewController: UIViewController {
             vc.cn = Int(choose.selectedSegmentIndex)
             vc.dil = Int(dilution.text!)!
         }
-
     }
     
+    // Functions for the done button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         number1.resignFirstResponder()
         number2.resignFirstResponder()
